@@ -1,0 +1,9 @@
+<h1>Hello world</h1>
+<p>Count: @Count</p>
+<button onclick="@Increment">Click me</button>
+
+@code {
+    private int Count {get; set;} = 1;
+
+    private void Increment() => Count++;
+}

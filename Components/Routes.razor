@@ -2,7 +2,7 @@
 
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="data">
-        <RouteView RouteData="@data" />
+        <RouteView RouteData="@data" DefaultLayout="typeof(Layout.Main)" />
     </Found>
 
     <NotFound>

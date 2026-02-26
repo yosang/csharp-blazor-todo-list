@@ -1,7 +1,4 @@
 @page "/todo"
-
-@using static Microsoft.AspNetCore.Components.Web.RenderMode
-
 @rendermode InteractiveServer
 
 <div>
@@ -17,15 +14,15 @@
             }
         }
     </ul>
-    <input placeholder="Something to do" onchange="@OnInputChanged"/>
+    <input placeholder="Something to do" @bind="newTodo"/>
     
-    <button onclick="@AddTodo">Add todo</button>
+    <button @onclick="AddTodo">Add todo</button>
 </div>
 
 
 @code{
     private List<TodoItem> todos = [];
-    private string newTodo {get; set;} = string.Empty;
+    private string newTodo = string.Empty;
     public void AddTodo()
     {
         if(!string.IsNullOrEmpty(newTodo))
@@ -33,10 +30,5 @@
         todos.Add(new TodoItem { Title = newTodo });
         newTodo = string.Empty;
         }
-    }
-
-    private void OnInputChanged(ChangeEventArgs e)
-    {
-        newTodo = e.Value?.ToString() ?? string.Empty;
     }
 }

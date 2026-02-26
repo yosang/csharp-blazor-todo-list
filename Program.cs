@@ -1,3 +1,5 @@
+using BlazorTodoApp.Components;
+
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
@@ -9,7 +11,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
 }
 
-app.MapRazorComponents<BlazorTodoApp.Components.App>()
+app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.UseAntiforgery();

@@ -2,7 +2,12 @@
 @rendermode InteractiveServer
 
 <div>
-<h1>Todo</h1>
+
+@* Count returns the lenth of a list
+    If we pass it a predicate (bool fn) it will return the count of the elements that meet the condition
+ *@
+<h1>Todo (@todos.Count((todo) => !todo.IsDone))</h1> 
+
     <ul>
         @if (todos.Count == 0)
         {
@@ -10,6 +15,7 @@
         } else {
             @foreach (var todo in todos)
             {
+                <input type="checkbox" @bind="todo.IsDone"/>
                 <li>@todo.Title</li>
             }
         }

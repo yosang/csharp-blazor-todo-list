@@ -1,0 +1,48 @@
+@page "/todo"
+
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+
+@rendermode InteractiveServer
+
+<div>
+<h1>Todo</h1>
+    <ul>
+        @if (todos.Count == 0)
+        {
+            <p>Nothing to do</p>
+        } else {
+            @foreach (var todo in todos)
+            {
+                <li>@todo.Title</li>
+            }
+        }
+    </ul>
+    <input placeholder="Something to do" onchange="@OnInputChanged"/>
+    
+    <button onclick="@AddTodo">Add todo</button>
+</div>
+
+
+@code{
+    private List<TodoItem> todos = [];
+    private string newTodo {get; set;} = string.Empty;
+    public void AddTodo()
+    {
+        if(!string.IsNullOrEmpty(newTodo))
+        {
+        todos.Add(new TodoItem { Title = newTodo });
+        newTodo = string.Empty;
+        }
+    }
+
+    private void OnInputChanged(ChangeEventArgs e)
+    {
+        newTodo = e.Value?.ToString() ?? string.Empty;
+    }
+
+    public class TodoItem
+    {
+        public string Title { get; set; } = string.Empty;
+        public bool IsDone { get; set; }
+    }
+}
